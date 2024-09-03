@@ -1,0 +1,33 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../app/'
+        exclude:
+            - '../app/DependencyInjection/'
+            - '../app/Entity/'
+            - '../app/Kernel.php'
+
+    App\UserInterface\Web\Controller\:
+        resource: '../app/UserInterface/Web/Controller/'
+        tags: [ 'controller.service_arguments' ]
+
+    # Buses
+    App\Domain\Bus\Query\QueryBusInterface:
+        class: App\Infrastructure\Bus\Query\BasicQueryBus
+        arguments:
+            - {
+                'App\Application\Query\Movie\GetRandomMovies': [
+                    '@App\Application\Query\Movie\GetRandomMoviesHandler'
+                ],
+                'App\Application\Query\Movie\GetMoviesWithTitleContainingMoreThanOneWord': [
+                    '@App\Application\Query\Movie\GetMoviesWithTitleContainingMoreThanOneWordHandler'
+                ],
+                'App\Application\Query\Movie\GetMoviesWithEvenNumberOfSignsInTitleByFirstLetter': [
+                    '@App\Application\Query\Movie\GetMoviesWithEvenNumberOfSignsInTitleByFirstLetterHandler'
+                ]
+            }

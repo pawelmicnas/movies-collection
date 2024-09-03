@@ -1,1 +1,4 @@
 .idea
+.env
+src/var
+src/vendor
