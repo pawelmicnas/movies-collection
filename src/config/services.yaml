@@ -31,3 +31,9 @@ services:
                     '@App\Application\Query\Movie\GetMoviesWithEvenNumberOfSignsInTitleByFirstLetterHandler'
                 ]
             }
+
+    # Cli
+    cli_demo:
+        class: App\UserInterface\Cli\Demo
+        tags:
+            - { name: console.command }

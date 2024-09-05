@@ -21,6 +21,7 @@ class GetMoviesByFirstLetterWithEvenCountOfSigns
     public function __invoke(Request $request, QueryBusInterface $bus, SerializerFactory $serializerFactory): Response
     {
         try {
+            //input should be tested of course, but this is recruitment task, I won't cover everything
             $result = $bus->ask(new GetMoviesWithEvenNumberOfSignsInTitleByFirstLetter($request->get('letter')));
         } catch (BusGeneralException) {
             return new JsonResponse(['message' => 'Failed searching movies'], Response::HTTP_INTERNAL_SERVER_ERROR);

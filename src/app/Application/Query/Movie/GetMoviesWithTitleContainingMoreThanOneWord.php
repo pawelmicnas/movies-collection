@@ -8,8 +8,4 @@ use App\Domain\Bus\Query\QueryInterface;
 
 class GetMoviesWithTitleContainingMoreThanOneWord implements QueryInterface
 {
-    public function __construct(
-        public readonly string $firstLetter,
-    ) {
-    }
 }
